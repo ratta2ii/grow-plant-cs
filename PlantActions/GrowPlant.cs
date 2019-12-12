@@ -19,14 +19,40 @@ namespace Actions.Plant {
          return "Name: "+ PlantName + " Health: " + Health + " Age: "+ Age;
        }
 
-       private void WaterPlant()
-       {     
-         Health++; 
+       private void WaterPlant(string currentStorm)
+       {  
+         string currentStorm = ThrowRandomStorm();
+         if (currentStorm == "flood") 
+         {
+           Health -= 2;  
+         }
+         if (currentStorm == "heat storm")
+         {
+           Health += 2;   
+         }
+         else
+         {
+           Health += 1;
+         }    
+         
        }
 
        private void GiveNutrients()
        {
-         Health += 2;
+         string currentStorm = ThrowRandomStorm(); 
+         if (currentStorm == "flood")
+         {
+           return false;  
+         } 
+         else if (currentStorm == "snow storm")
+         {
+           Health++;
+         }
+         else 
+         {
+           Health += 2;  
+         }    
+        
        }
 
        private void SpeakToPlant()
@@ -103,7 +129,6 @@ namespace Actions.Plant {
             int RandomNumber  = randomObject.Next(1, 4);
             return RandomNumber;
         }
-
 
    } 
 }
