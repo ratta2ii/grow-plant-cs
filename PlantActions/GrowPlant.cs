@@ -9,79 +9,94 @@ namespace Actions.Plant {
 
        public Plant(string name)
        {
-           PlantName = name;
-           Health = 1;  // Baby plants at minimum health Health
-           Age = 1; 
+         PlantName = name;
+         Health = 1;  // Baby plants at minimum health
+         Age = 1; 
        }
 
        public string DisplayProperties()
        {
-           return "Name: "+ PlantName + " Health: " + Health + " Age: "+ Age;
+         return "Name: "+ PlantName + " Health: " + Health + " Age: "+ Age;
        }
 
        private void WaterPlant()
-       {
-             Health++; 
+       {     
+         Health++; 
        }
 
        private void GiveNutrients()
        {
-           Health += 2;
-           if (Health > 5)
-           { 
-               Age += 2;
-           }
-           else
-           {
-               Age += 1;
-           }
+         Health += 2;
        }
 
        private void SpeakToPlant()
        {
-           Health += 1;
+         Health += 1;
        }
 
-    
        public void FullService()
        {
-           WaterPlant();
-           GiveNutrients();
-           SpeakToPlant();
+         WaterPlant();
+         GiveNutrients();
+         SpeakToPlant();
        }
 
         private void Flood()
         {
+          if (Health > 8)
+          {
+            Health -= 1;  
+          }
+          else
+          {
             Health -= 2;
+          }  
+          
         }
 
         private void HeatStorm()
         {
+          if (Health > 8)
+          {
+            Health -= 1;  
+          }
+          else
+          {
             Health -= 2;
+          }
         }
 
          private void SnowStorm()
         {
+          if (Health > 8)
+          {
+            Health -= 1;  
+          }
+          else
+          {
             Health -= 2;
+          }
         }
-        public void ThrowRandomStorm()
+        public string ThrowRandomStorm()
         {
            int ourRandomNumber = RandomNumber();
            if (ourRandomNumber == 1)
            {
-               Flood();
+             Flood();
+             return "flood";
            }
            else if (ourRandomNumber == 2)
            {
-               HeatStorm();
+             HeatStorm();
+             return "heat storm";
            }
            else
            {
-               SnowStorm();
+             SnowStorm();
+             return "snow storm";
            }
         
         }
-
         public static int RandomNumber()
         {
             Random randomObject = new Random();
