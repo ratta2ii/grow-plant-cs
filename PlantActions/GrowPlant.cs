@@ -5,18 +5,18 @@ namespace Actions.Plant {
    class Plant {
        public string PlantName { get; set; }
        public int Health { get; set; }
-       public int Size { get; set; }
+       public int Age { get; set; }
 
        public Plant(string name)
        {
            PlantName = name;
-           Health = 1;  // Baby plants at 50% Health
-           Size = 1; 
+           Health = 1;  // Baby plants at minimum health Health
+           Age = 1; 
        }
 
        public string DisplayProperties()
        {
-           return "Name: "+ PlantName + " Health: " + Health + " Size: "+ Size;
+           return "Name: "+ PlantName + " Health: " + Health + " Age: "+ Age;
        }
 
        private void WaterPlant()
@@ -29,11 +29,11 @@ namespace Actions.Plant {
            Health += 2;
            if (Health > 5)
            { 
-               Size += 2;
+               Age += 2;
            }
            else
            {
-               Size += 1;
+               Age += 1;
            }
        }
 
@@ -42,12 +42,12 @@ namespace Actions.Plant {
            Health += 1;
        }
 
-       public bool FullService()
+    
+       public void FullService()
        {
            WaterPlant();
            GiveNutrients();
            SpeakToPlant();
-           return true; //WTF
        }
 
         private void Flood()
@@ -60,6 +60,10 @@ namespace Actions.Plant {
             Health -= 2;
         }
 
+         private void SnowStorm()
+        {
+            Health -= 2;
+        }
         public void ThrowRandomStorm()
         {
            int ourRandomNumber = RandomNumber();
@@ -85,6 +89,6 @@ namespace Actions.Plant {
             return RandomNumber;
         }
 
-        
+
    } 
 }
